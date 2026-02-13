@@ -1,0 +1,241 @@
+import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import React from 'react'
+import styles from './SlideInstructionModalSimple.module.css'
+
+// A simpler slide component with a clearer interface
+const Slide = ({ children }) => {
+    return <div className={`slide-content flex items-center justify-start ${styles.slideContent}`} style={{ userSelect: 'none' }}>{children}</div>;
+};
+
+function SlideInstructionModal({ isOpen, closeModal, children, initialSlide = 0, onSlideChange }) {
+    const [currentSlide, setCurrentSlide] = useState(initialSlide);
+    const [slideDirection, setSlideDirection] = useState('left'); 
+    const [isAnimating, setIsAnimating] = useState(false);
+    const lastSlideIndex = useRef(initialSlide);
+    
+    // Track whether this is the component's first mount
+    const isFirstMount = useRef(true);
+    
+    // Create slides directly from children
+    const slides = React.Children.toArray(children);
+    const totalSlides = slides.length;
+    
+    // Safety check to ensure we don't go beyond available slides
+    useEffect(() => {
+        if (currentSlide >= totalSlides && totalSlides > 0) {
+            setCurrentSlide(totalSlides - 1);
+        }
+        
+        // Notify parent component about slide changes if callback is provided
+        if (onSlideChange) {
+            onSlideChange(currentSlide);
+        }
+    }, [currentSlide, totalSlides, onSlideChange]);
+    
+    // Handle modal open/close without resetting slide position except on first mount
+    useEffect(() => {
+        if (isOpen) {
+            // Only reset to slide 0 on the very first mount
+            if (isFirstMount.current) {
+                setCurrentSlide(0);
+                lastSlideIndex.current = 0;
+                isFirstMount.current = false;
+            }
+            // Always set the direction
+            setSlideDirection('left');
+        }
+    }, [isOpen]);
+    
+    const goToNextSlide = () => {
+        if (!isAnimating) {
+            setIsAnimating(true);
+            lastSlideIndex.current = currentSlide;
+            setSlideDirection('right'); 
+            
+            // Calculate slide index before setTimeout to avoid closure issues
+            // Loop back to the first slide if we're on the last slide
+            const nextSlide = currentSlide < totalSlides - 1 ? currentSlide + 1 : 0;
+            
+            // Update the slide immediately but keep animation state
+            setCurrentSlide(nextSlide);
+            
+            // Allow animation to complete before accepting new interactions
+            setTimeout(() => {
+                setIsAnimating(false);
+            }, 600); // Match with animation duration + delay
+        }
+    };
+
+    const goToPrevSlide = () => {
+        if (!isAnimating) {
+            setIsAnimating(true);
+            lastSlideIndex.current = currentSlide;
+            setSlideDirection('left'); 
+            
+            // Calculate slide index before setTimeout to avoid closure issues
+            // Loop to the last slide if we're on the first slide
+            const prevSlide = currentSlide > 0 ? currentSlide - 1 : totalSlides - 1;
+            
+            // Update the slide immediately but keep animation state
+            setCurrentSlide(prevSlide);
+            
+            // Allow animation to complete before accepting new interactions
+            setTimeout(() => {
+                setIsAnimating(false);
+            }, 600); // Match with animation duration + delay
+        }
+    };
+    
+    // Add keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!isOpen) return;
+            
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                goToNextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                goToPrevSlide();
+            }
+        };
+        
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, currentSlide, isAnimating]);
+
+    if (!isOpen) return null;
+    
+    // Using a simpler implementation without Dialog component to avoid overlay issues
+    return (
+        <div 
+            className="fixed inset-y-0 left-0 pointer-events-none" 
+            style={{ zIndex: 5 }}
+        >
+            <Transition
+                appear 
+                show={isOpen} 
+                as="div"
+            >
+                <TransitionChild
+                                enter="transition ease-out duration-500"
+                                enterFrom="transform translate-x-[-100%] opacity-0"
+                                enterTo="transform translate-x-0 opacity-100"
+                                leave="transition ease-in duration-300"
+                                leaveFrom="transform translate-x-0 opacity-100"
+                                leaveTo="transform translate-x-[-100%] opacity-0"
+                            >
+                                <DialogPanel className="pointer-events-auto w-[420px] h-[360px] rounded-r-xl bg-background px-8 py-6 text-bodytext flex flex-col modal-dialog relative shadow-xl border border-gray-200 select-none" style={{ zIndex: 5 }}>
+                                    {/* Close button */}
+                                    <button 
+                                        onClick={closeModal}
+                                        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 z-10"
+                                        aria-label="Close"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <div className="flex-grow flex items-center justify-start overflow-y-auto py-4 h-full">
+                                        <div className="flex flex-col gap-[10px] relative w-full h-full overflow-hidden items-start justify-center">
+                                            {/* Non-animating state: just show current slide */}
+                                            {!isAnimating && (
+                                                <div className="w-full h-full flex items-center justify-start" key={`static-slide-${currentSlide}`}>
+                                                    <div className="w-full">
+                                                        {totalSlides > 0 && currentSlide < totalSlides && slides[currentSlide]}
+                                                    </div>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Animating state: show both slides with transition */}
+                                            {isAnimating && (
+                                                <>
+                                                    {/* Outgoing slide */}
+                                                    <div 
+                                                        className={`absolute inset-0 w-full h-full flex items-center justify-start ${
+                                                            slideDirection === 'right' 
+                                                                ? styles.slideOutLeft 
+                                                                : styles.slideOutRight
+                                                        }`}
+                                                        style={{ userSelect: 'none' }}
+                                                        key={`out-slide-${lastSlideIndex.current}`}
+                                                    >
+                                                        <div className="w-full">
+                                                            {lastSlideIndex.current < totalSlides && slides[lastSlideIndex.current]}
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {/* Incoming slide */}
+                                                    <div 
+                                                        className={`absolute inset-0 w-full h-full flex items-center justify-start ${
+                                                            slideDirection === 'right' 
+                                                                ? styles.slideInRight 
+                                                                : styles.slideInLeft
+                                                        }`}
+                                                        style={{ 
+                                                            userSelect: 'none',
+                                                            animationDelay: '180ms', // Slightly longer delay to ensure current slide exits first
+                                                            opacity: 0 // Start fully transparent to prevent flash
+                                                        }}
+                                                        key={`in-slide-${currentSlide}`}
+                                                    >
+                                                        <div className="w-full">
+                                                            {currentSlide < totalSlides && slides[currentSlide]}
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Slide navigation */}
+                                    <div className="flex justify-end items-center mt-auto gap-3 pb-2 w-full">
+                                        {/* Previous arrow */}
+                                        <button 
+                                            onClick={goToPrevSlide}
+                                            disabled={isAnimating}
+                                            className={`p-1 ${isAnimating ? 'opacity-30' : 'opacity-100 hover:opacity-70'}`}
+                                        >
+                                            <Image 
+                                                src="/slide-arrow.svg" 
+                                                alt="Previous" 
+                                                width={20} 
+                                                height={20} 
+                                                className="transform rotate-180" 
+                                            />
+                                        </button>
+                                        
+                                        {/* Slide counter */}
+                                        <div className="text-sm px-2 min-w-[40px] text-center">
+                                            {currentSlide + 1} / {totalSlides}
+                                        </div>
+                                        
+                                        {/* Next arrow */}
+                                        <button 
+                                            onClick={goToNextSlide}
+                                            disabled={isAnimating}
+                                            className={`p-1 ${isAnimating ? 'opacity-30' : 'opacity-100 hover:opacity-70'}`}
+                                        >
+                                            <Image 
+                                                src="/slide-arrow.svg" 
+                                                alt="Next" 
+                                                width={20} 
+                                                height={20} 
+                                            />
+                                        </button>
+                                    </div>
+                                </DialogPanel>
+                            </TransitionChild>
+                            </div>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
+        </>
+    )
+}
+
+export { Slide }
+export default SlideInstructionModal

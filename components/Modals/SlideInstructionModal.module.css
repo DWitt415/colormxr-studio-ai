@@ -1,0 +1,99 @@
+/* Animation for slides */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.slideContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    min-height: 100px; /* Ensure container has height */
+}
+
+.slideContent {
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    width: 100%;
+    will-change: transform, opacity;
+    transform: translateX(0); /* Initial position to ensure animations work */
+    opacity: 1;
+}
+
+.slideInLeft {
+    animation-name: slideInFromLeft;
+}
+
+.slideOutLeft {
+    animation-name: slideOutToLeft;
+}
+
+.slideInRight {
+    animation-name: slideInFromRight;
+}
+
+.slideOutRight {
+    animation-name: slideOutToRight;
+}
+
+.modalSlideIn {
+    animation: slideInFromLeft 300ms ease forwards;
+}
+
+/* Utility for hiding scrollbars */
+.scrollbarHide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbarHide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Improve animation visibility */
+.slideAbsolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}

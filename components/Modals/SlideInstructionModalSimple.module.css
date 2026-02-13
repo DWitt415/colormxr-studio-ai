@@ -1,0 +1,120 @@
+/* Animation for slides */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-40%);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateX(-40%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(40%);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateX(40%);
+        opacity: 0;
+    }
+}
+
+/* Container styling */
+.slideContainer {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    overflow: hidden;
+}
+
+/* Basic slide styling - removed slideContent class as we're using direct animation classes */
+.slideInLeft, .slideOutLeft, .slideInRight, .slideOutRight {
+    animation-duration: 450ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform, opacity;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Left justify content */
+    height: 100%;
+}
+
+/* Animation classes */
+.slideInLeft {
+    animation-name: slideInFromLeft;
+}
+
+.slideOutLeft {
+    animation-name: slideOutToLeft;
+}
+
+.slideInRight {
+    animation-name: slideInFromRight;
+}
+
+.slideOutRight {
+    animation-name: slideOutToRight;
+}
+
+/* Remove redundant classes as we're handling positioning in the component */
+
+/* Add a specific class for slide content vertical centering but horizontal left alignment */
+.slideContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    user-select: none; /* Prevent text selection */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    pointer-events: auto; /* Ensure clicks on slide content work */
+}
+
+/* Utility for hiding scrollbars */
+.scrollbarHide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbarHide::-webkit-scrollbar {
+    display: none;
+}
