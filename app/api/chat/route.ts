@@ -399,8 +399,8 @@ export async function POST(request: Request) {
       usage: {
         input_tokens: response.usage.input_tokens,
         output_tokens: response.usage.output_tokens,
-        cache_creation_tokens: response.usage.cache_creation_input_tokens || 0,
-        cache_read_tokens: response.usage.cache_read_input_tokens || 0,
+        cache_creation_tokens: usageAny.cache_creation_input_tokens || 0,
+        cache_read_tokens: usageAny.cache_read_input_tokens || 0,
         cost_usd: cost,
       },
     });
