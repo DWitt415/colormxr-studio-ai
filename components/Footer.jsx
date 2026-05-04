@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import ExerciseModalV from '@/components/Modals/ExerciseModalV'
 import { storePreviousExercisePath, debugSessionStorage } from '@/utils/navigation'
 
-function Footer({ lesson, title, customText, shapeColors, backgroundColor, row, col, showGallery = true, onMenuClick }) {
+function Footer({ lesson, title, customText = undefined, shapeColors = undefined, backgroundColor = undefined, row = undefined, col = undefined, showGallery = true, onMenuClick = undefined }) {
     // exercise Modal Control
     let [isexerciseModalOpen, setIsexerciseModalOpen] = useState(false)
     // Track whether we're on SVG viewer page
