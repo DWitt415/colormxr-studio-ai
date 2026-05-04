@@ -1,0 +1,64 @@
+.form {
+  padding: 0;
+  background: transparent;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px 20px 20px 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  flex: 1;
+  padding: 10px 16px;
+  padding-right: 48px;
+  border: none;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: transparent;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sendButton {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4A90E2;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.sendButton:hover:not(:disabled) {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.sendButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.sendButton svg {
+  display: block;
+}

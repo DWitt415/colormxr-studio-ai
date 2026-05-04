@@ -3,4 +3,23 @@ node_modules
 .next/*
 _monorepo/
 
+# Environment
+.env.local
 
+# OS
+.DS_Store
+
+# Editor / tools
+.obsidian/
+.claude/
+tsconfig.tsbuildinfo
+
+# Personal / scratch files
+Dave Vranicar.md
+Untitled.md
+
+# Design assets (binary files)
+_UI screens/
+
+# Archived / backup components
+components/_archive/

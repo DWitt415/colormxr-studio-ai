@@ -1,0 +1,119 @@
+.message {
+  margin-bottom: 12px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.messageContent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.userMessage {
+  margin-left: 0;
+}
+
+.userMessage .messageContent {
+  justify-content: flex-start;
+}
+
+.assistantMessage {
+  margin-right: auto;
+}
+
+/* Bubble */
+.bubble {
+  max-width: 100%;
+  padding: 0;
+  border-radius: 0;
+  word-wrap: break-word;
+}
+
+.userMessage .bubble {
+  background: transparent;
+  max-width: 280px;
+}
+
+.userMessage .text {
+  color: #4A90E2;
+}
+
+.assistantMessage .bubble {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.text {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.text p {
+  margin: 0 0 12px 0;
+}
+
+.text p:last-child {
+  margin-bottom: 0;
+}
+
+.text strong {
+  font-weight: 600;
+  color: white;
+}
+
+.text br {
+  line-height: 1.4;
+}
+
+.errorText {
+  color: #ff6b6b;
+}
+
+/* Interactive Pills */
+.pillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pill {
+  padding: 8px 20px;
+  background: #4A90E2;
+  border: none;
+  color: white;
+  border-radius: 15px 15px 15px 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill:hover {
+  background: #3a7fd5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pill:active {
+  transform: translateY(0);
+}

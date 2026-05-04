@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import ExerciseModalV from '@/components/Modals/ExerciseModalV'
 import { storePreviousExercisePath, debugSessionStorage } from '@/utils/navigation'
 
-function Footer({ lesson, title, customText, shapeColors, backgroundColor, row, col, showGallery = true }) {
+function Footer({ lesson, title, customText, shapeColors, backgroundColor, row, col, showGallery = true, onMenuClick }) {
     // exercise Modal Control
     let [isexerciseModalOpen, setIsexerciseModalOpen] = useState(false)
     // Track whether we're on SVG viewer page
@@ -85,7 +85,7 @@ function Footer({ lesson, title, customText, shapeColors, backgroundColor, row, 
       <>
         <div className='bg-[#3d3d3d] h-[40px] w-full px-4 flex items-center justify-between border-t-2 border-[#606060] fixed bottom-0'>
           <div className="flex items-center gap-4">
-            <div onClick={exerciseModalOpen}>
+            <div onClick={onMenuClick ?? exerciseModalOpen}>
               <img src='/menu.svg' alt='menu' className='h-[20px] cursor-pointer' />
             </div>
             <h3>
