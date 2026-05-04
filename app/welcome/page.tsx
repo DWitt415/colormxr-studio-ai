@@ -296,7 +296,7 @@ function page() {
             <Footer
                 lesson="Welcome"
                 title="Getting Started"
-                onMenuClick={() => { setIsTutorOpen(false); setIsMiniMenuOpen(true); }}
+                onMenuClick={(() => { setIsTutorOpen(false); setIsMiniMenuOpen(true); }) as unknown as null}
             />
         </main>
     )
