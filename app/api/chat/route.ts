@@ -326,11 +326,12 @@ export async function POST(request: Request) {
     }
 
     // Calculate cost
+    const usageAny = response.usage as any;
     const cost = calculateCost({
       input_tokens: response.usage.input_tokens,
       output_tokens: response.usage.output_tokens,
-      cache_creation_input_tokens: response.usage.cache_creation_input_tokens,
-      cache_read_input_tokens: response.usage.cache_read_input_tokens,
+      cache_creation_input_tokens: usageAny.cache_creation_input_tokens,
+      cache_read_input_tokens: usageAny.cache_read_input_tokens,
     });
 
     // Store conversation in Supabase (if userId provided)
