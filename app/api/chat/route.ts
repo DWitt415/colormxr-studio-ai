@@ -381,8 +381,8 @@ export async function POST(request: Request) {
             lesson_id: lessonId || 'unknown',
             input_tokens: response.usage.input_tokens,
             output_tokens: response.usage.output_tokens,
-            cache_creation_tokens: response.usage.cache_creation_input_tokens || 0,
-            cache_read_tokens: response.usage.cache_read_input_tokens || 0,
+            cache_creation_tokens: usageAny.cache_creation_input_tokens || 0,
+            cache_read_tokens: usageAny.cache_read_input_tokens || 0,
             total_cost_usd: cost,
             model: 'claude-sonnet-4-5',
           });
