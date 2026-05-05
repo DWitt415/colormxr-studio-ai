@@ -222,6 +222,7 @@ function page() {
             {/* AI tutor — shown after section is selected */}
             {activeConfig && (
                 <TutorSidebarWithLesson
+                    key={activeConfig.lessonId}
                     isOpen={isTutorOpen}
                     closeModal={() => setIsTutorOpen(false)}
                     lessonFilename={activeConfig.lessonFilename}
