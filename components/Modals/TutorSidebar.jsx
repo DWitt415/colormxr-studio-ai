@@ -700,7 +700,7 @@ export default function TutorSidebar({
               )}
               {hasMore && (
                 <div className={styles.continueHint}>
-                  Tap or click anywhere to continue
+                  Tap anywhere to continue
                 </div>
               )}
               <ChatInput

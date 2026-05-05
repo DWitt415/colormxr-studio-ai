@@ -7,8 +7,8 @@ const SECTIONS = [
   { id: 'secondary',  title: 'Making Secondary Colors' },
   { id: 'subtraction',        title: 'Color by Subtraction' },
   { id: 'relationships',      title: 'Primary & Secondary Relationships' },
-  { id: 'phantom-colors',     title: "'Phantom' Complementary Colors" },
   { id: 'complex-complement', title: 'Complex Complementary Colors' },
+  { id: 'phantom-colors',     title: "'Phantom' Complementary Colors" },
   { id: 'color-wheel',        title: 'Building the Color Wheel' },
 ];
 

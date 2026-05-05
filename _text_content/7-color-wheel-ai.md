@@ -1,6 +1,8 @@
 
 ## [EXPOSITION]
-The color wheel is a spatial map of color relationships. In this exercise, you'll build one yourself — placing the primary and secondary colors at their positions around the wheel, then filling in the transitional colors between them. By the time you're done, you'll have defined the full Colormxr palette: **Red, Orange, Yellow, Green, Cyan, Blue, Violet, and Magenta**.
+The color wheel is a spatial map of color relationships, arranged in a complementary opposing relationship. 
+
+In this exercise, you'll build one yourself — placing the primary and secondary colors at their positions around the wheel, then filling in the transitional colors between them. By the time you're done, you'll have defined the full Colormxr palette: **Red, Orange, Yellow, Green, Cyan, Blue, Violet, and Magenta**.
 
 ## [EXPOSITION]
 This wheel is arranged in RGB+CMY order, not the traditional RYB artist's wheel. The primaries — Red, Green, Blue — are spaced 120° apart. The secondaries — Cyan, Magenta, Yellow — sit opposite their complements. The positions matter: they encode the relationships you've been working with.

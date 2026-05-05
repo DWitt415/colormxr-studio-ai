@@ -27,6 +27,7 @@ export default function TutorSidebarWithLesson({
         setIsLoadingLesson(false);
         return;
       }
+      setChunks([]);
       setIsLoadingLesson(true);
       try {
         const parsed = await loadLesson(lessonFilename);
@@ -39,8 +40,8 @@ export default function TutorSidebarWithLesson({
       }
     }
 
-    if (isOpen) fetchLesson();
-  }, [lessonFilename, isOpen]);
+    fetchLesson();
+  }, [lessonFilename]);
 
   return (
     <TutorSidebar

@@ -2,9 +2,15 @@
 ## [EXPOSITION]
 Welcome to Colormixing 101!
 
-This is where you will learn the foundations of RGB colormixing from first principles and hands-on, eyes-on learning.
+This is where you will learn the foundations of RGB+CMY colormixing with Colormxr.
 
-First, I'm going to give you an overview of the Colormxr interface — how it's organized, what the controls do, and how to read the color values. This is an important foundational step to working intelligently with color.
+**Colormxr** is a unique interface, because it was designed from first principles based on a novel approach to color theory and the relationships between primary  **Red, Green and Blue** and secondary **Cyan, Magenta and Yellow** colors.
+
+Once the principles are understood, the Colormxr interface unlocks color theory into practice, where you understand the relationships between all colors, and how to mix them.
+
+## [EXPOSITION]
+
+First, we'll look at the Colormxr interface — how it's organized, what the controls do, and how to read the color values. This is an important foundational step to working intelligently with color.
 
 ## [EXPOSITION]
 Colormxr has two main components: the shapeset and the Colormxr interface. 
@@ -40,14 +46,15 @@ The **Black slider** is special. It controls all three primary color channels eq
 
 An important concept here: Black, White, and Gray are all created by equal amounts of Red, Green, and Blue , which is why they're called **neutral colors**. When you use the Black slider, you're not adding or removing black ink — you're changing all channels in unison.
 
-Pro Tip: You can reset any color to Black quickly using the Black slider.
+Pro Tip: You can reset any color to Black quickly by using the Black slider.
 
 ## [EXPOSITION]
 Select the shape and move the Black slider up towards White, and then back down to Black. This shows you the entire **Grayscale** range. Notice how the RGB color values are equal in each channel.
 
 ## [EXPOSITION]
-Also notice the same thing is happening to the Hex values. Hex values, like RGB values, consist of three channel values, but they are represented as alpha-numeric values. To be precise, they are **hex values**, which range from 0 to 15. Since 0-10 can't cover this, the letters A to F are used to represent them. 
+Also notice the same thing is happening to the Hex color values. Hex values, like RGB values, consist of three channel values, but they are represented as alpha-numeric values. To be precise, they are **hex values**, which range from 0 to 15. Since 0-10 can't cover this, the letters A to F are used to represent them. 
 
+## [EXPOSITION]
 Here's an example of a hex value for a single color channel:
 F = 15, so FF = 15 x 15 = 255
 

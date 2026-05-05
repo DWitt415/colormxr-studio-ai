@@ -105,24 +105,7 @@ const EXERCISE_CONFIGS: ExerciseConfig[] = [
     },
   },
   {
-    // 4: phantom-colors
-    lessonFilename: '5-phantom-colors-ai.md',
-    lessonId: '5-phantom-colors-ai',
-    exerciseId: 'phantom_colors',
-    lessonTitle: "'Phantom' Complementary Colors",
-    colorController: {
-      layoutMode: 'grid',
-      row: 1,
-      col: 1,
-      width: 250,
-      height: 250,
-      hSpace: 0,
-      vSpace: 0,
-      bgColor: 'rgb(207,207,207)',
-    },
-  },
-  {
-    // 5: complex-complement
+    // 4: complex-complement
     lessonFilename: '6-complex-complement-ai.md',
     lessonId: '6-complex-complement-ai',
     exerciseId: 'complex_complement',
@@ -137,6 +120,23 @@ const EXERCISE_CONFIGS: ExerciseConfig[] = [
       vSpace: 0,
       bgColor: 'rgb(255,255,255)',
       initShapeColors: ['rgb(171,171,171)', 'rgb(205,205,205)'],
+    },
+  },
+  {
+    // 5: phantom-colors
+    lessonFilename: '5-phantom-colors-ai.md',
+    lessonId: '5-phantom-colors-ai',
+    exerciseId: 'phantom_colors',
+    lessonTitle: "'Phantom' Complementary Colors",
+    colorController: {
+      layoutMode: 'grid',
+      row: 1,
+      col: 1,
+      width: 250,
+      height: 250,
+      hSpace: 0,
+      vSpace: 0,
+      bgColor: 'rgb(207,207,207)',
     },
   },
   {
@@ -159,7 +159,7 @@ function page() {
 
     const [isMiniMenuOpen, setIsMiniMenuOpen] = useState(true)
     const [isTutorOpen, setIsTutorOpen] = useState(false)
-    const [activeExerciseIdx, setActiveExerciseIdx] = useState<number | null>(null)
+    const [activeExerciseIdx, setActiveExerciseIdx] = useState<number | null>(0)
     const [completedIds, setCompletedIds] = useState<string[]>([])
     const [shapeColors, setShapeColors] = useState<string[]>([])
 

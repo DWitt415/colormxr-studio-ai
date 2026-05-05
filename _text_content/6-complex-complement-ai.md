@@ -1,9 +1,25 @@
 
 ## [EXPOSITION]
-So far, complementary colors have meant primary/secondary pairs: Red↔Cyan, Green↔Magenta, Blue↔Yellow. But the complementary relationship isn't limited to those six. Every color has a complement — and the formula is simple: subtract each channel value from 255.
+So far, complementary colors have been defined by primary / secondary pairs: 
+Red↔Cyan, Green↔Magenta, Blue↔Yellow. 
+
+However, every color has a complement, which is its opposite. This means that complementary, or opposite values fill each channel to full strength, resulting in White, a neutral color with all channels at full strength.
+
+This is easy to see with primary and secondary colors:
+255.0.0 + 0.255.255 = 255.255.255
+
+Next, we will use this formula to derive a the complementary color for a 'complex' (non primary / secondary) color.
 
 ## [EXPOSITION]
-If a color is 140.55.205, its complement is 115.178.50 — subtract each channel from 255: 255−140=115, 255−55=178, 255−205=50. Add any color to its complement and you always get 255.255.255 — White. This is the universal formula, and it works for any color value in the system.
+Example: Using this color - **140.55.205**, we can use this formula; The complementary color is derived by subtracting each channel value from 255;
+ 
+  255−140=115
+  255−55=178
+  255−205=50
+
+Add them together like this: **115.178,.50**
+  
+  Add any color to its complement and you always get 255.255.255 — White. This is the universal formula, and it works for any color value in the system.
 
 ## [CHECKPOINT: ready_to_calculate]
 <!-- AI_PROMPT: Check student has the complex complement exercise open — two shapes side by side -->
